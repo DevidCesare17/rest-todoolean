@@ -1,0 +1,23 @@
+*{
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+.d_flex{
+  display: flex;
+}
+
+.delete_element{
+  color: red;
+  font-weight: 700;
+  margin: 0 20px;
+}
+
+li:not(:last-child){
+  margin-bottom: 20px;
+}
+
+.input_element_container{
+  margin-bottom: 20px;
+}
