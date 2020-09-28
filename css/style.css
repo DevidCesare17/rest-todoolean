@@ -21,3 +21,7 @@ li:not(:last-child){
 .input_element_container{
   margin-bottom: 20px;
 }
+
+.d_none{
+  display: none;
+}

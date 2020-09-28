@@ -12,7 +12,20 @@ $(document).ready(function(){
   $("#list_element").on("click", ".delete_element", function () {
     var element = $(this).parent();
     var id = element.attr("id");
+    console.log(id);
     deleteElement(element, id);
+  });
+
+  $("#list_element").on("click", ".fas.fa-cog", function () {
+    $(this).siblings(".modify_input").show();
+    $(".modify_input").on("keyup", function(e){
+      if (e.which == 13) {
+        var element = $(this).parent();
+        var id = element.attr("id");
+        modifyElement(element, id);
+        $(".modify_input").val("");
+      }
+    });
   });
 
 });
@@ -95,6 +108,23 @@ function renderAddElement (data) {
   $("#list_element").append(html);
 }
 
-function modifyElement() {
-
+function modifyElement(element, id) {
+  var customElement = $(".modify_input").val().toLowerCase();
+  if (customElement != "") {
+    $.ajax(
+      {
+        "url": "http://157.230.17.132:3009/todos/" + id,
+        "method": "PATCH",
+        "data" : {
+          "text" : customElement
+        },
+        "success": function(data) {
+          $("#"+ id + ".output_element").text(customElement);
+        },
+        "error" : function(error) {
+          alert("ERRORE!");
+        }
+      }
+    );
+  }
 }
