@@ -17,12 +17,12 @@ $(document).ready(function(){
   });
 
   $("#list_element").on("click", ".fas.fa-cog", function () {
-    $(this).siblings(".modify_input").show();
+    $(this).siblings(".modify_input").removeClass("d_none ");
     $(".modify_input").on("keyup", function(e){
       if (e.which == 13) {
-        var element = $(this).parent();
-        var id = element.attr("id");
-        modifyElement(element, id);
+        var customElement = $(this).parent();
+        var id = customElement.parent().attr("id");
+        modifyElement(customElement, id);
         $(".modify_input").val("");
       }
     });
@@ -119,7 +119,7 @@ function modifyElement(element, id) {
           "text" : customElement
         },
         "success": function(data) {
-          $("#"+ id + ".output_element").text(customElement);
+          $("#" + id + ".output_element").text(customElement);
         },
         "error" : function(error) {
           alert("ERRORE!");
